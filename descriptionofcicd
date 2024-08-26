@@ -39,7 +39,7 @@ hit the url http://(ip of virtual machine):8080  #(8080 is default port no jenki
 #but we creating our with SCM and execute shell.now paste the url of our gitrepo where our sourcecode of django-todoapp is present. and credential of github then write two command of docker
 #in execte shell.command is that
 docker build . -t todo-app  #( for execution of dockeriamge because in sourcecode a dockerfile containing docker image is present )
-docker run -p 8000:8000 todo-app  #(for exution of portno  of todo-app which is mentioned in dockerfile)
+docker run -p 8000:8000 -d todo-app  #(for exution of portno  of todo-app which is mentioned in dockerfile)
  #now save our job then do build now if our job is build successfully then congratulations if it show some error then use CHATGPT.It will give correct solution of your error. 
 #after job is successfully build then hit the url on google.
 http://(ip of virtual macine):8000  #(8000 is port no of todo-app which isgiven by us)
