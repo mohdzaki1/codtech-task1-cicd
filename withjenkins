@@ -1,0 +1,56 @@
+#Hello codtech,My name is Mohd Zaki.I am AWS DevOps intern.my first is that i have to create CICD with build and deployment of simple application.so i am doing with source of django-todoapp.
+#firstly i have arrange the source of django-todoapp  and copied to my git repository.i learned three way to copy source code to our git repository from someone.
+#then i have create virtual machine for intallation of jenkins.for install of jenkins i need to install java.following commands is used for install java and jenkins for amazon linux 3.
+#Step 1: Update the System
+#It’s always a good practice to ensure that your system is up to date. Open a terminal window and enter the following command:
+sudo dnf update
+#Step 2: Install Java
+#Jenkins is a Java application, so Java is a prerequisite. Install Java with the following command:
+sudo dnf install java-17-amazon-corretto -y
+#step 3: Verify the installation with:
+java -version
+#Step 4: Add the Jenkins Repository
+#Next, add the Jenkins repository to your system with the following commands:
+ssudo wget -O /etc/yum.repos.d/jenkins.repo \
+    https://pkg.jenkins.io/redhat-stable/jenkins.repo
+#Import a key file from Jenkins-CI to enable installation from the package:
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+#Step 5: Install Jenkins
+#Now, install Jenkins by running:
+sudo dnf install jenkins -y
+#Step 6: Start and Enable Jenkins
+#Enable and start the Jenkins service using:
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+#Step 7: Access Jenkins
+#Now, open your web browser and access Jenkins by navigating to:
+http://your_amazon_linux_instance_ip:8080
+#You will see a setup wizard and be prompted to enter the administrator password.
+Retrieve the password with the following command:
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+#here jenkins is installed on your virtual machine but for cicd we need to install git,docker,maven so for instaling this tools we need to execites following commands.
+yum install git -y #(command for installation of git)
+yum install docker -y  #(command for installation of docker)
+yum install maven -y   #(command for installation of maven)
+#now our vertual machine is ready for doind our job beacause we are usind all the tools for ourt cicd.
+hit the url http://(ip of virtual machine):8080  #(8080 is default port no jenkins but we cna chane it.)
+#after this we can see the interface of jenkins then we need to paste the password which we get from sudo cat /var/lib/jenkins/secrets/initialAdminPassword.after this fill username and passoword
+#then install the plugins.then create a new job with freestyle type then ok. after ok a configration page will open we can do all the configration like build trigger,post build action,build steps,scm,
+#but we creating our with SCM and execute shell.now paste the url of our gitrepo where our sourcecode of django-todoapp is present. and credential of github then write two command of docker
+#in execte shell.command is that
+docker build . -t todo-app  #( for execution of dockeriamge because in sourcecode a dockerfile containing docker image is present )
+docker run -p 8000:8000 todo-app  #(for exution of portno  of todo-app which is mentioned in dockerfile)
+ #now save our job then do build now if our job is build successfully then congratulations if it show some error then use CHATGPT.It will give correct solution of your error. 
+#after job is successfully build then hit the url on google.
+http://(ip of virtual macine):8000  #(8000 is port no of todo-app which isgiven by us)
+#now we can see the interface of todo-app.here we can write pending works.it is app which help us to make list of our daily work. here our task is completed.
+
+
+
+
+
+
+
+
+
+
